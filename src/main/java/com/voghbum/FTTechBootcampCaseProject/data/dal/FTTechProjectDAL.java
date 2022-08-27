@@ -42,9 +42,6 @@ public class FTTechProjectDAL {
     public Iterable<UrunYorum> findAllUrunYorumByKullaniciId(long kullaniciId) {
         var x =  doWorkForRepository(() -> m_urunYorumRepository.findAllByKullaniciId(kullaniciId),
                 "FTTechProjectDAL.findAllUrunYorumByKullaniciId");
-
-        x.forEach(System.out::println);
-
         return x;
     }
 

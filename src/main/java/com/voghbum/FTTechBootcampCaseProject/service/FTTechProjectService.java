@@ -60,11 +60,6 @@ public class FTTechProjectService {
     private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByKullaniciIdCallBack(long kullaniciId) {
         var x = convertToList(m_ftTechProjectDAL.findAllUrunYorumByKullaniciId(kullaniciId), false, m_mapper::toUrunYorumInfoDTO);
 
-        System.out.println("***************************************************************");
-        System.out.println("ISMI:" + x.getClass().getName());
-        x.forEach(System.out::println);
-        System.out.println("***************************************************************");
-
         return x;
     }
 
