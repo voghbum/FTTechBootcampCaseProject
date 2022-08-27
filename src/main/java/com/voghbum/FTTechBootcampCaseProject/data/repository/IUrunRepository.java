@@ -9,5 +9,6 @@ import java.time.LocalDate;
 
 public interface IUrunRepository extends CrudRepository<Urun, Long> {
     Iterable<Urun> findAllBySonKullanmaTarihiAfterOrSonKullanmaTarihiIsNull(LocalDate now);
+
     Iterable<Urun> findAllBySonKullanmaTarihiBefore(LocalDate now);
 }
