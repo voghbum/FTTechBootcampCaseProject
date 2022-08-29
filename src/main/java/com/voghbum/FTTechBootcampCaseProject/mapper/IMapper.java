@@ -10,11 +10,15 @@ import org.mapstruct.Mapper;
 
 @Mapper(implementationName = "MapperImpl", componentModel = "spring")
 public interface IMapper {
-
     Kullanici toKullanici(KullaniciInfoWithoutYorumDTO kullaniciInfoWithoutYorumDTO);
+
     KullaniciInfoWithoutYorumDTO toKullaniciInfoDTO(Kullanici kullanici);
+
     UrunInfoWithoutYorumDTO toUrunInfoDTO(Urun urun);
+
     Urun toUrun(UrunInfoWithoutYorumDTO urunInfoWithoutYorumDTO);
+
     UrunYorumInfoWithoutUrunAndKullaniciDTO toUrunYorumInfoDTO(UrunYorum urunYorum);
+
     UrunYorum toUrunYorum(UrunYorumInfoWithoutUrunAndKullaniciDTO urunYorumInfoWithoutUrunAndKullanıcıDTO);
 }

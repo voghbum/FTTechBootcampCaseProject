@@ -13,11 +13,11 @@ import com.voghbum.FTTechBootcampCaseProject.data.entity.UrunYorum;
 import java.util.Set;
 
 public class KullaniciInfoWithoutYorumDTO {
-    private long            m_id;
-    private String          m_adi;
-    private String          m_soyadi;
-    private String          m_email;
-    private String          m_telefon;
+    private long m_id;
+    private String m_adi;
+    private String m_soyadi;
+    private String m_email;
+    private String m_telefon;
 
     public long getId() {
         return m_id;

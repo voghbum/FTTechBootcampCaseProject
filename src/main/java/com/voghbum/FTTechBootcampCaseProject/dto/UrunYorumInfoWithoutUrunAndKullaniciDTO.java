@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
  */
 
 public class UrunYorumInfoWithoutUrunAndKullaniciDTO {
-    private String           m_yorum;
-    private LocalDateTime    m_yorumTarihi;
+    private String m_yorum;
+    private LocalDateTime m_yorumTarihi;
 
     public String getYorum() {
         return m_yorum;
@@ -21,6 +21,7 @@ public class UrunYorumInfoWithoutUrunAndKullaniciDTO {
     public void setYorum(String yorum) {
         m_yorum = yorum;
     }
+
     @JsonProperty("Yorum tarihi")
     public LocalDateTime getYorumTarihi() {
         return m_yorumTarihi;

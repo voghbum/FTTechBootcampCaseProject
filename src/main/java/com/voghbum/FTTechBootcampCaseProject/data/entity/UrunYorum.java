@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="comments")
+@Table(name = "comments")
 public class UrunYorum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,20 +24,10 @@ public class UrunYorum {
     @JsonBackReference
     public Urun urun;
 
-    /*
-    @Transient
-    public long urunId;
-    */
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     public Kullanici kullanici;
-
-    /*
-    @Transient
-    public long KullaniciId;
-    */
 
     @Override
     public String toString() {

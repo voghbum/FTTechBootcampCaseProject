@@ -31,8 +31,6 @@ public class FTTechProjectService {
                 .collect(Collectors.toList());
     }
 
-    // ****************************************************************
-    // Case Kapsamında İstenen Kriterler
     public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByUrunId(long urunId) {
         return doWorkForService(() -> findAllUrunYorumByUrunIdCallback(urunId),
                 "FTTechProjectService.findAllUrunYorumByUrunId");
@@ -58,9 +56,7 @@ public class FTTechProjectService {
     }
 
     private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByKullaniciIdCallBack(long kullaniciId) {
-        var x = convertToList(m_ftTechProjectDAL.findAllUrunYorumByKullaniciId(kullaniciId), false, m_mapper::toUrunYorumInfoDTO);
-
-        return x;
+        return convertToList(m_ftTechProjectDAL.findAllUrunYorumByKullaniciId(kullaniciId), false, m_mapper::toUrunYorumInfoDTO);
     }
 
     public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciId(LocalDateTime startDate, LocalDateTime endDate, long kullaniciId) {

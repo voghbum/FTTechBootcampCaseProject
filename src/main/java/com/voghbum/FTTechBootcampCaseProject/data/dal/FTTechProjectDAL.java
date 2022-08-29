@@ -5,6 +5,7 @@ import com.voghbum.FTTechBootcampCaseProject.data.entity.UrunYorum;
 import com.voghbum.FTTechBootcampCaseProject.data.repository.IKullaniciRepository;
 import com.voghbum.FTTechBootcampCaseProject.data.repository.IUrunRepository;
 import com.voghbum.FTTechBootcampCaseProject.data.repository.IUrunYorumRepository;
+
 import static com.voghbum.util.data.DatabaseUtil.*;
 
 import org.springframework.stereotype.Component;
@@ -33,8 +34,7 @@ public class FTTechProjectDAL {
     }
 
     public Iterable<UrunYorum> findAllUrunYorumBeetwenDatesAndUrunId(LocalDateTime startDate, LocalDateTime endDate,
-                                                                        long productId)
-    {
+                                                                     long productId) {
         return doWorkForRepository(() -> m_urunYorumRepository.findAllByYorumTarihiBetweenAndUrunId(startDate, endDate, productId),
                 "FTTechProjectDAL.findAllUrunYorumBeetwenDatesAndUrunId");
     }

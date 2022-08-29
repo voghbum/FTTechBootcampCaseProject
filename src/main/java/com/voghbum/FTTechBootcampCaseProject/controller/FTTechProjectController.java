@@ -34,26 +34,21 @@ public class FTTechProjectController {
         m_ftTechProjectService = ftTechProjectService;
     }
 
-    // *****************************************************************
-    // CASE Kapsamında İstenen Kriterler
     @GetMapping("urunyorum/findAll/ByKullaniciId")
-    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId)
-    {
+    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId) {
         return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByKullaniciId(kullaniciId));
     }
 
     @GetMapping("urunyorum/findAll/byUrun")
-    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByUrunId(@RequestParam long urunId)
-    {
+    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByUrunId(@RequestParam long urunId) {
         return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByUrunId(urunId));
     }
 
     @GetMapping("urunyorum/findAll/byTarihAndKullanici")
     public ResponseEntity<?> findAllUrunYorumBeetwenDatesAndKullaniciId(@RequestParam String startDate,
-                                                                                                    @RequestParam String endDate,
-                                                                                                    @RequestParam long kullaniciId)
-    {
-        try{
+                                                                        @RequestParam String endDate,
+                                                                        @RequestParam long kullaniciId) {
+        try {
             LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
             LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
 
@@ -66,8 +61,7 @@ public class FTTechProjectController {
 
     @GetMapping("urunyorum/findAll/byTarihAndUrun")
     public ResponseEntity<?> findAllUrunYorumBeetwenDatesAndUrunId(@RequestParam String startDate,
-                                                                                               @RequestParam String endDate, @RequestParam long urunId)
-    {
+                                                                   @RequestParam String endDate, @RequestParam long urunId) {
         try {
             LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
             LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
@@ -76,7 +70,7 @@ public class FTTechProjectController {
             return ResponseEntity.ok(entity);
 
         } catch (Exception e) {
-            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
@@ -89,8 +83,6 @@ public class FTTechProjectController {
     public ResponseEntity<List<UrunInfoWithoutYorumDTO>> findAllKullanmaTarihiGecmemisUrunler() {
         return ResponseEntity.ok(m_ftTechProjectService.findUrunBySonKullanmaTarihiAfterOrNull(LocalDate.now()));
     }
-
-    // *****************************************************************
 
 
 }

@@ -13,10 +13,10 @@ import java.time.LocalDate;
 */
 
 public class UrunInfoWithoutYorumDTO {
-    private long            m_id;
-    private String          m_adi;
-    private BigDecimal      m_fiyat;
-    private LocalDate       m_sonKullanmaTarihi;
+    private long m_id;
+    private String m_adi;
+    private BigDecimal m_fiyat;
+    private LocalDate m_sonKullanmaTarihi;
 
     public long getId() {
         return m_id;
