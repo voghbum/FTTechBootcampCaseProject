@@ -71,8 +71,7 @@ public class FTTechProjectController {
     public List<UrunInfoWithoutYorumDTO> findAllKullanmaTarihiGecmisUrunler() {
         return m_ftTechProjectService.findUrunBySonKullanmaTarihiBefore(LocalDate.now());
     }
-
-    //TODO: OLMADI
+    
     @GetMapping("urun/findAll/sonkullanmatarihigecmemis")
     public List<UrunInfoWithoutYorumDTO> findAllKullanmaTarihiGecmemisUrunler() {
         return m_ftTechProjectService.findUrunBySonKullanmaTarihiAfterOrNull(LocalDate.now());
