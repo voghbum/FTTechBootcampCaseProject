@@ -3,6 +3,8 @@ package com.voghbum.FTTechBootcampCaseProject.controller;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoWithoutYorumDTO;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoWithoutUrunAndKullaniciDTO;
 import com.voghbum.FTTechBootcampCaseProject.service.FTTechProjectService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,46 +37,57 @@ public class FTTechProjectController {
     // *****************************************************************
     // CASE Kapsamında İstenen Kriterler
     @GetMapping("urunyorum/findAll/ByKullaniciId")
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId)
+    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId)
     {
-        return m_ftTechProjectService.findAllUrunYorumByKullaniciId(kullaniciId);
+        return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByKullaniciId(kullaniciId));
     }
 
     @GetMapping("urunyorum/findAll/byUrun")
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByUrunId(@RequestParam long urunId)
+    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByUrunId(@RequestParam long urunId)
     {
-        return m_ftTechProjectService.findAllUrunYorumByUrunId(urunId);
+        return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByUrunId(urunId));
     }
 
     @GetMapping("urunyorum/findAll/byTarihAndKullanici")
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciId(@RequestParam String startDate,
+    public ResponseEntity<?> findAllUrunYorumBeetwenDatesAndKullaniciId(@RequestParam String startDate,
                                                                                                     @RequestParam String endDate,
                                                                                                     @RequestParam long kullaniciId)
     {
-        LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
-        LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
+        try{
+            LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
+            LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
 
-        return m_ftTechProjectService.findAllUrunYorumBeetwenDatesAndKullaniciId(dateStart, dateEnd, kullaniciId);
+            var entity = m_ftTechProjectService.findAllUrunYorumBeetwenDatesAndKullaniciId(dateStart, dateEnd, kullaniciId);
+            return ResponseEntity.ok(entity);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping("urunyorum/findAll/byTarihAndUrun")
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndUrunId(@RequestParam String startDate,
+    public ResponseEntity<?> findAllUrunYorumBeetwenDatesAndUrunId(@RequestParam String startDate,
                                                                                                @RequestParam String endDate, @RequestParam long urunId)
     {
-        LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
-        LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
+        try {
+            LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
+            LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
 
-        return m_ftTechProjectService.findAllUrunYorumBeetwenDatesAndUrunId(dateStart, dateEnd, urunId);
+            var entity = m_ftTechProjectService.findAllUrunYorumBeetwenDatesAndUrunId(dateStart, dateEnd, urunId);
+            return ResponseEntity.ok(entity);
+
+        } catch (Exception e) {
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping("urun/findAll/sonkullanmatarihigecmis")
-    public List<UrunInfoWithoutYorumDTO> findAllKullanmaTarihiGecmisUrunler() {
-        return m_ftTechProjectService.findUrunBySonKullanmaTarihiBefore(LocalDate.now());
+    public ResponseEntity<List<UrunInfoWithoutYorumDTO>> findAllKullanmaTarihiGecmisUrunler() {
+        return ResponseEntity.ok(m_ftTechProjectService.findUrunBySonKullanmaTarihiBefore(LocalDate.now()));
     }
-    
+
     @GetMapping("urun/findAll/sonkullanmatarihigecmemis")
-    public List<UrunInfoWithoutYorumDTO> findAllKullanmaTarihiGecmemisUrunler() {
-        return m_ftTechProjectService.findUrunBySonKullanmaTarihiAfterOrNull(LocalDate.now());
+    public ResponseEntity<List<UrunInfoWithoutYorumDTO>> findAllKullanmaTarihiGecmemisUrunler() {
+        return ResponseEntity.ok(m_ftTechProjectService.findUrunBySonKullanmaTarihiAfterOrNull(LocalDate.now()));
     }
 
     // *****************************************************************
