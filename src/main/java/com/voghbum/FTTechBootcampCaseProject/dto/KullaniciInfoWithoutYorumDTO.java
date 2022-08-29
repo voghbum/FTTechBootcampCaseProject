@@ -7,6 +7,7 @@ package com.voghbum.FTTechBootcampCaseProject.dto;
     yorum bilgisi yer almasıdır. Bu nedenle mapping kısmında infinite loop oluşuyor.
 */
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.voghbum.FTTechBootcampCaseProject.data.entity.UrunYorum;
 
 import java.util.Set;

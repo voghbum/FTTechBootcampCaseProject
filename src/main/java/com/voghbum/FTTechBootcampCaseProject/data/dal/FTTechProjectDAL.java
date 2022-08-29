@@ -40,9 +40,8 @@ public class FTTechProjectDAL {
     }
 
     public Iterable<UrunYorum> findAllUrunYorumByKullaniciId(long kullaniciId) {
-        var x =  doWorkForRepository(() -> m_urunYorumRepository.findAllByKullaniciId(kullaniciId),
+        return doWorkForRepository(() -> m_urunYorumRepository.findAllByKullaniciId(kullaniciId),
                 "FTTechProjectDAL.findAllUrunYorumByKullaniciId");
-        return x;
     }
 
     public Iterable<UrunYorum> findAllUrunYorumBeetwenDatesAndKullaniciId(LocalDateTime startDate, LocalDateTime endDate, long kullaniciId) {

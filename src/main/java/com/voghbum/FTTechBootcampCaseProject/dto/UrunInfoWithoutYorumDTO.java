@@ -1,5 +1,7 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,6 +42,7 @@ public class UrunInfoWithoutYorumDTO {
         m_fiyat = fiyat;
     }
 
+    @JsonProperty("Son kullanma tarihi")
     public LocalDate getSonKullanmaTarihi() {
         return m_sonKullanmaTarihi;
     }

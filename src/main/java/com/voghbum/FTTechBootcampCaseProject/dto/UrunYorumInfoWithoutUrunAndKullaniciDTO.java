@@ -1,5 +1,8 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 
 /*
@@ -18,7 +21,7 @@ public class UrunYorumInfoWithoutUrunAndKullaniciDTO {
     public void setYorum(String yorum) {
         m_yorum = yorum;
     }
-
+    @JsonProperty("Yorum tarihi")
     public LocalDateTime getYorumTarihi() {
         return m_yorumTarihi;
     }

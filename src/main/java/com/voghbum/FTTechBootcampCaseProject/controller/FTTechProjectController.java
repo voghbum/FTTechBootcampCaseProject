@@ -20,7 +20,8 @@ import java.util.List;
 public class FTTechProjectController {
     private final FTTechProjectService m_ftTechProjectService;
 
-    // Saat bilgileri verilmez ise default olarak 0 alınıyor.
+    // Dependency Injection yapılması daha makul fakat Case kapsamında tek bir formatter yeterli olduğu için gerek duymadım.
+    // Bu Fromatter ile request Date verilirken saat bilgileri verilmez ise default olarak 0 alınıyor.
     private final DateTimeFormatter dateTimeFormatter = new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy[ [HH][:mm][:ss][.SSS]]")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
@@ -47,7 +48,8 @@ public class FTTechProjectController {
 
     @GetMapping("urunyorum/findAll/byTarihAndKullanici")
     public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciId(@RequestParam String startDate,
-                                                                                                    @RequestParam String endDate, @RequestParam long kullaniciId)
+                                                                                                    @RequestParam String endDate,
+                                                                                                    @RequestParam long kullaniciId)
     {
         LocalDateTime dateStart = LocalDateTime.parse(startDate, dateTimeFormatter);
         LocalDateTime dateEnd = LocalDateTime.parse(endDate, dateTimeFormatter);
