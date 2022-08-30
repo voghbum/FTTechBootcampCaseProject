@@ -13,3 +13,13 @@ Projede istenen kriterlerin hepsi gerçekleştirilmiştir. Bunlar;
 - Son kullanma tarihi geçmiş ürünleri listeleyen bir metot yazmak.
 - Son kullanma tarihi geçmemiş ürünleri listeleyen bir metot yazmak. (Son kullanma tarihi boş olanlar da gelmeli.)
 
+# API
+
+|   | method | mapping                                                      | örnek parametreler                                          |
+|---|--------|--------------------------------------------------------------|-------------------------------------------------------------|
+|   | GET    | *FTTech/bootcamp/api/urunyorum/findAll/ByKullaniciId*        | kullaniciId=1                                               |
+|   | GET    | *FTTech/bootcamp/api/urunyorum/findAll/byUrun*               | urunId=1                                                    |
+|   | GET    | *FTTech/bootcamp/api/urunyorum/findAll/byTarihAndKullanici*  | startDate=11/10/1998 18:45&endDate=12/12/2025&kullaniciId=1 |
+|   | GET    | *FTTech/bootcamp/api/urunyorum/findAll/byTarihAndUrun*       | startDate=11/10/1998&endDate=12/12/2025 18:45&urunId=1      |
+|   | GET    | *FTTech/bootcamp/api/urun/findAll/sonkullanmatarihigecmis*   | YOK                                                         |
+|   | GET    | *FTTech/bootcamp/api/urun/findAll/sonkullanmatarihigecmemis* | YOK                                                         |
