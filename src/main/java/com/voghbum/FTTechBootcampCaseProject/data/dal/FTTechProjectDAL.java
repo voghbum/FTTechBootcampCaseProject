@@ -26,8 +26,6 @@ public class FTTechProjectDAL {
         m_urunYorumRepository = urunYorumRepository;
     }
 
-    // *****************************************************************
-    // CASE Kapsamında İstenen Kriterler
     public Iterable<UrunYorum> findAllUrunYorumByUrunId(long urunId) {
         return doWorkForRepository(() -> m_urunYorumRepository.findAllByUrunId(urunId),
                 "findAllUrunYorumBeetwenDatesAndUrunId.findAllUrunYorumByUrunId");
@@ -58,7 +56,4 @@ public class FTTechProjectDAL {
         return doWorkForRepository(() -> m_urunRepository.findAllBySonKullanmaTarihiBefore(now),
                 "FTTechProjectDAL.findUrunBySonKullanmaTarihiBeforeOrNull");
     }
-    // ****************************************************************
-
-
 }

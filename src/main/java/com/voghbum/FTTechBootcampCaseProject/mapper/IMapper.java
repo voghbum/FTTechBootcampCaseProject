@@ -20,5 +20,5 @@ public interface IMapper {
 
     UrunYorumInfoWithoutUrunAndKullaniciDTO toUrunYorumInfoDTO(UrunYorum urunYorum);
 
-    UrunYorum toUrunYorum(UrunYorumInfoWithoutUrunAndKullaniciDTO urunYorumInfoWithoutUrunAndKullanıcıDTO);
+    UrunYorum toUrunYorum(UrunYorumInfoWithoutUrunAndKullaniciDTO urunYorumInfoWithoutUrunAndKullaniciDTO);
 }

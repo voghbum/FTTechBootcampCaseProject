@@ -4,6 +4,7 @@ import com.voghbum.FTTechBootcampCaseProject.data.dal.FTTechProjectDAL;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoWithoutYorumDTO;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoWithoutUrunAndKullaniciDTO;
 import com.voghbum.FTTechBootcampCaseProject.mapper.IMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class FTTechProjectService {
     private final FTTechProjectDAL m_ftTechProjectDAL;
     private final IMapper m_mapper;
 
-    public FTTechProjectService(FTTechProjectDAL ftTechProjectDAL, IMapper mapper) {
+    public FTTechProjectService(FTTechProjectDAL ftTechProjectDAL, @Qualifier("myMapperImpl") IMapper mapper) {
         m_ftTechProjectDAL = ftTechProjectDAL;
         m_mapper = mapper;
     }
@@ -40,14 +41,18 @@ public class FTTechProjectService {
         return convertToList(m_ftTechProjectDAL.findAllUrunYorumByUrunId(urunId), false, m_mapper::toUrunYorumInfoDTO);
     }
 
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndUrunId(LocalDateTime startDate, LocalDateTime endDate,
+    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndUrunId(LocalDateTime startDate,
+                                                                                               LocalDateTime endDate,
                                                                                                long productId) {
         return doWorkForService(() -> findAllUrunYorumBeetwenDatesAndUrunIdCallback(startDate, endDate, productId),
                 "FTTechProjectService.findAllUrunYorumBeetwenDatesAndUrunId");
     }
 
-    private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndUrunIdCallback(LocalDateTime startDate, LocalDateTime endDate, long productId) {
-        return convertToList(m_ftTechProjectDAL.findAllUrunYorumBeetwenDatesAndUrunId(startDate, endDate, productId), false, m_mapper::toUrunYorumInfoDTO);
+    private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndUrunIdCallback(LocalDateTime startDate,
+                                                                                                        LocalDateTime endDate,
+                                                                                                        long productId) {
+        return convertToList(m_ftTechProjectDAL.findAllUrunYorumBeetwenDatesAndUrunId(startDate, endDate, productId),
+                false, m_mapper::toUrunYorumInfoDTO);
     }
 
     public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumByKullaniciId(long kullaniciId) {
@@ -59,13 +64,17 @@ public class FTTechProjectService {
         return convertToList(m_ftTechProjectDAL.findAllUrunYorumByKullaniciId(kullaniciId), false, m_mapper::toUrunYorumInfoDTO);
     }
 
-    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciId(LocalDateTime startDate, LocalDateTime endDate, long kullaniciId) {
+    public List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciId(LocalDateTime startDate,
+                                                                                                    LocalDateTime endDate, long kullaniciId) {
         return doWorkForService(() -> findAllUrunYorumBeetwenDatesAndKullaniciIdCallBack(startDate, endDate, kullaniciId),
                 "FTTechProjectService.findAllUrunYorumBeetwenDatesAndKullaniciId");
     }
 
-    private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciIdCallBack(LocalDateTime startDate, LocalDateTime endDate, long kullaniciId) {
-        return convertToList(m_ftTechProjectDAL.findAllUrunYorumBeetwenDatesAndKullaniciId(startDate, endDate, kullaniciId), false, m_mapper::toUrunYorumInfoDTO);
+    private List<UrunYorumInfoWithoutUrunAndKullaniciDTO> findAllUrunYorumBeetwenDatesAndKullaniciIdCallBack(LocalDateTime startDate,
+                                                                                                             LocalDateTime endDate,
+                                                                                                             long kullaniciId) {
+        return convertToList(m_ftTechProjectDAL.findAllUrunYorumBeetwenDatesAndKullaniciId(startDate, endDate, kullaniciId),
+                false, m_mapper::toUrunYorumInfoDTO);
     }
 
     public List<UrunInfoWithoutYorumDTO> findUrunBySonKullanmaTarihiAfterOrNull(LocalDate now) {
@@ -85,6 +94,5 @@ public class FTTechProjectService {
     private List<UrunInfoWithoutYorumDTO> findUrunBySonKullanmaTarihiBeforeOrNullCallBack(LocalDate now) {
         return convertToList(m_ftTechProjectDAL.findUrunBySonKullanmaTarihiBefore(now), false, m_mapper::toUrunInfoDTO);
     }
-    // *****************************************************************************
 
 }
