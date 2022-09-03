@@ -67,9 +67,9 @@ public class InitRunner implements CommandLineRunner {
         if (m_urunRepository.count() != 0)
             return;
 
-        addUrun("Çamaşır makinesi", new BigDecimal("10000.999"), null);
+        addUrun("Elma", new BigDecimal("10000.999"), LocalDate.of(2024, 8, 30));
         addUrun("Cips", new BigDecimal("6"), LocalDate.of(2010, 9, 15));
-        addUrun("Süt", new BigDecimal("12"), LocalDate.of(2022, 8, 30));
+        addUrun("Süt", new BigDecimal("12"), LocalDate.of(2025, 8, 30));
         addUrun("Laptop", new BigDecimal("20000.888"), null);
         addUrun("Ayakkabı", new BigDecimal("600.999"), null);
 

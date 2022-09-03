@@ -1,7 +1,7 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.voghbum.FTTechBootcampCaseProject.data.entity.UrunYorum;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
     yer almıyor.
  */
 
-public class UrunYorumInfoWithoutUrunAndKullaniciDTO {
+public class UrunYorumInfoDTO {
     private String m_yorum;
     private LocalDateTime m_yorumTarihi;
 

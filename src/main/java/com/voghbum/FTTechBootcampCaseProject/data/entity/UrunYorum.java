@@ -26,7 +26,7 @@ public class UrunYorum {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
+    //@JsonBackReference
     public Kullanici kullanici;
 
     @Override

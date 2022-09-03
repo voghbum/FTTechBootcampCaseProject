@@ -25,7 +25,7 @@ public class Urun {
     public LocalDate sonKullanmaTarihi;
 
     @OneToMany(mappedBy = "urun", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    //@JsonManagedReference
     public Set<UrunYorum> yorumlar;
 
     @Override

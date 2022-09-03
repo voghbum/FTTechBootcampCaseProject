@@ -26,7 +26,7 @@ public class Kullanici {
     public String telefon;
 
     @OneToMany(mappedBy = "kullanici", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    //@JsonManagedReference
     public Set<UrunYorum> yorumlar;
 
     @Override

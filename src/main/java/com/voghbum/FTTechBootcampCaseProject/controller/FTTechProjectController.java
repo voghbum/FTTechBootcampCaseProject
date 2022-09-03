@@ -1,7 +1,7 @@
 package com.voghbum.FTTechBootcampCaseProject.controller;
 
-import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoWithoutYorumDTO;
-import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoWithoutUrunAndKullaniciDTO;
+import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoDTO;
+import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoDTO;
 import com.voghbum.FTTechBootcampCaseProject.service.FTTechProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,12 +35,12 @@ public class FTTechProjectController {
     }
 
     @GetMapping("urunyorum/findAll/ByKullaniciId")
-    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId) {
+    public ResponseEntity<List<UrunYorumInfoDTO>> findAllUrunYorumByKullaniciId(@RequestParam long kullaniciId) {
         return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByKullaniciId(kullaniciId));
     }
 
     @GetMapping("urunyorum/findAll/byUrun")
-    public ResponseEntity<List<UrunYorumInfoWithoutUrunAndKullaniciDTO>> findAllUrunYorumByUrunId(@RequestParam long urunId) {
+    public ResponseEntity<List<UrunYorumInfoDTO>> findAllUrunYorumByUrunId(@RequestParam long urunId) {
         return ResponseEntity.ok(m_ftTechProjectService.findAllUrunYorumByUrunId(urunId));
     }
 
@@ -75,12 +75,12 @@ public class FTTechProjectController {
     }
 
     @GetMapping("urun/findAll/sonkullanmatarihigecmis")
-    public ResponseEntity<List<UrunInfoWithoutYorumDTO>> findAllKullanmaTarihiGecmisUrunler() {
+    public ResponseEntity<List<UrunInfoDTO>> findAllKullanmaTarihiGecmisUrunler() {
         return ResponseEntity.ok(m_ftTechProjectService.findUrunBySonKullanmaTarihiBefore(LocalDate.now()));
     }
 
     @GetMapping("urun/findAll/sonkullanmatarihigecmemis")
-    public ResponseEntity<List<UrunInfoWithoutYorumDTO>> findAllKullanmaTarihiGecmemisUrunler() {
+    public ResponseEntity<List<UrunInfoDTO>> findAllKullanmaTarihiGecmemisUrunler() {
         return ResponseEntity.ok(m_ftTechProjectService.findUrunBySonKullanmaTarihiAfterOrNull(LocalDate.now()));
     }
 

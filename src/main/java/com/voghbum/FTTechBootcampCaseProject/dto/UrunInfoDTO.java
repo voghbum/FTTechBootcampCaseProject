@@ -1,22 +1,28 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
-/*
-    Normalde DTO Layer'da frontend'e gitmesi istenmeyen entity üye değerleri çıkarılır.
-
-    Fakat bu DTO'dan yorumlar çıkarıldı. Bunun sebebi UrunYorumDTO'da UrunDTO yer alması, UrunDTO'da ise
-    UrunYorumDTO yer almasıdır. Bu nedenle mapping kısmında infinite loop oluşuyor.
-*/
-
-public class UrunInfoWithoutYorumDTO {
+@JsonIgnoreProperties(value = { "urunYorumInfoDTO" })
+public class UrunInfoDTO {
     private long m_id;
     private String m_adi;
     private BigDecimal m_fiyat;
     private LocalDate m_sonKullanmaTarihi;
+
+    private Set<UrunYorumInfoDTO> m_urunYorumInfoDTO;
+
+    public Set<UrunYorumInfoDTO> getUrunYorumInfoDTO() {
+        return m_urunYorumInfoDTO;
+    }
+
+    public void setUrunYorumInfoDTO(Set<UrunYorumInfoDTO> urunYorumInfoDTO) {
+        m_urunYorumInfoDTO = urunYorumInfoDTO;
+    }
 
     public long getId() {
         return m_id;

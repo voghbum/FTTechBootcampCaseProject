@@ -1,23 +1,27 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
-/*
-    Normalde DTO Layer'da frontend'e gitmesi istenmeyen entity üye değerleri çıkarılır.
-
-    Fakat bu DTO'dan yorumlar çıkarıldı. Bunun sebebi UrunYorumDTO'da Kullanıcı bilgisi yer alması, KullanıcıDTO'da ise
-    yorum bilgisi yer almasıdır. Bu nedenle mapping kısmında infinite loop oluşuyor.
-*/
-
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.voghbum.FTTechBootcampCaseProject.data.entity.UrunYorum;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Set;
 
-public class KullaniciInfoWithoutYorumDTO {
+@JsonIgnoreProperties(value = {"urunYorumInfoDTO"})
+public class KullaniciInfoDTO {
     private long m_id;
     private String m_adi;
     private String m_soyadi;
     private String m_email;
     private String m_telefon;
+
+    private Set<UrunYorumInfoDTO> m_urunYorumInfoDTO;
+
+
+    public Set<UrunYorumInfoDTO> getUrunYorumInfoDTO() {
+        return m_urunYorumInfoDTO;
+    }
+
+    public void setUrunYorumInfoDTO(Set<UrunYorumInfoDTO> urunYorumInfoDTO) {
+        m_urunYorumInfoDTO = urunYorumInfoDTO;
+    }
 
     public long getId() {
         return m_id;
@@ -61,11 +65,6 @@ public class KullaniciInfoWithoutYorumDTO {
 
     @Override
     public String toString() {
-        return "KullaniciInfoDTO{" +
-                "m_adi='" + m_adi + '\'' +
-                ", m_soyadi='" + m_soyadi + '\'' +
-                ", m_email='" + m_email + '\'' +
-                ", m_telefon='" + m_telefon + '\'' +
-                '}';
+        return "KullaniciInfoDTO{" + "m_adi='" + m_adi + '\'' + ", m_soyadi='" + m_soyadi + '\'' + ", m_email='" + m_email + '\'' + ", m_telefon='" + m_telefon + '\'' + '}';
     }
 }
