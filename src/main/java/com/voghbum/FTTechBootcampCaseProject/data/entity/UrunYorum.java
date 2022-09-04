@@ -1,6 +1,6 @@
 package com.voghbum.FTTechBootcampCaseProject.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,12 +21,12 @@ public class UrunYorum {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonBackReference
+    @JsonManagedReference
     public Urun urun;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
-    //@JsonBackReference
+    @JsonManagedReference
     public Kullanici kullanici;
 
     @Override

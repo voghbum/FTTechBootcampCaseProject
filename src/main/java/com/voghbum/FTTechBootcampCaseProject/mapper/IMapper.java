@@ -8,7 +8,7 @@ import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoDTO;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoDTO;
 import org.mapstruct.Mapper;
 
-@Mapper(implementationName = "MapperImpl", componentModel = "spring")
+@Mapper(implementationName = "MapperImpl" /*,componentModel = "spring"*/)
 public interface IMapper {
     Kullanici toKullanici(KullaniciInfoDTO kullaniciInfoDTO);
 

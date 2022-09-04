@@ -1,6 +1,6 @@
 package com.voghbum.FTTechBootcampCaseProject.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,15 +24,18 @@ public class Urun {
     @Column(name = "Exp_date")
     public LocalDate sonKullanmaTarihi;
 
-    @OneToMany(mappedBy = "urun", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JsonManagedReference
+    @OneToMany(mappedBy = "urun", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     public Set<UrunYorum> yorumlar;
 
     @Override
     public String toString() {
         return "Urun{" +
-                "adi='" + adi + '\'' +
+                "id=" + id +
+                ", adi='" + adi + '\'' +
                 ", fiyat=" + fiyat +
+                ", sonKullanmaTarihi=" + sonKullanmaTarihi +
+                ", yorumlar=" + yorumlar +
                 '}';
     }
 }

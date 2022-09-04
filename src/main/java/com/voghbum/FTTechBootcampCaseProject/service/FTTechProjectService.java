@@ -1,6 +1,7 @@
 package com.voghbum.FTTechBootcampCaseProject.service;
 
 import com.voghbum.FTTechBootcampCaseProject.data.dal.FTTechProjectDAL;
+import com.voghbum.FTTechBootcampCaseProject.data.entity.Urun;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoDTO;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoDTO;
 import com.voghbum.FTTechBootcampCaseProject.mapper.IMapper;
@@ -21,7 +22,7 @@ public class FTTechProjectService {
     private final FTTechProjectDAL m_ftTechProjectDAL;
     private final IMapper m_mapper;
 
-    public FTTechProjectService(FTTechProjectDAL ftTechProjectDAL, @Qualifier("MyMapper") IMapper mapper) {
+    public FTTechProjectService(FTTechProjectDAL ftTechProjectDAL, /*@Qualifier("MapperImpl")*/ IMapper mapper) {
         m_ftTechProjectDAL = ftTechProjectDAL;
         m_mapper = mapper;
     }
@@ -86,13 +87,14 @@ public class FTTechProjectService {
         return convertToList(m_ftTechProjectDAL.findUrunBySonKullanmaTarihiAfterOrNull(now), false, m_mapper::toUrunInfoDTO);
     }
 
-    public List<UrunInfoDTO> findUrunBySonKullanmaTarihiBefore(LocalDate now) {
+    public List<Urun> findUrunBySonKullanmaTarihiBefore(LocalDate now) {
         return doWorkForService(() -> findUrunBySonKullanmaTarihiBeforeOrNullCallBack(now),
                 "FTTechProjectService.findUrunBySonKullanmaTarihiBeforeOrNull");
     }
 
-    private List<UrunInfoDTO> findUrunBySonKullanmaTarihiBeforeOrNullCallBack(LocalDate now) {
-        return convertToList(m_ftTechProjectDAL.findUrunBySonKullanmaTarihiBefore(now), false, m_mapper::toUrunInfoDTO);
+    private List<Urun> findUrunBySonKullanmaTarihiBeforeOrNullCallBack(LocalDate now) {
+        return //convertToList(m_ftTechProjectDAL.findUrunBySonKullanmaTarihiBefore(now), false, m_mapper::toUrunInfoDTO);
+                StreamSupport.stream(m_ftTechProjectDAL.findUrunBySonKullanmaTarihiBefore(now).spliterator(), false).collect(Collectors.toList());
     }
 
 }

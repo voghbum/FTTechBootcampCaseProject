@@ -8,6 +8,8 @@ import com.voghbum.FTTechBootcampCaseProject.dto.UrunInfoDTO;
 import com.voghbum.FTTechBootcampCaseProject.dto.UrunYorumInfoDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component("MyMapper")
 public class MyMapper implements IMapper{
 
@@ -55,6 +57,7 @@ public class MyMapper implements IMapper{
         urunInfoDTO.setAdi(urun.adi);
         urunInfoDTO.setFiyat(urun.fiyat);
         urunInfoDTO.setSonKullanmaTarihi(urun.sonKullanmaTarihi);
+        urunInfoDTO.setUrunYorumInfoDTO(urun.yorumlar.stream().map(this::toUrunYorumInfoDTO).collect(Collectors.toSet()));
 
         return urunInfoDTO;
     }
@@ -70,6 +73,7 @@ public class MyMapper implements IMapper{
         urun.adi = urunInfoDTO.getAdi();
         urun.fiyat = urunInfoDTO.getFiyat();
         urun.sonKullanmaTarihi = urunInfoDTO.getSonKullanmaTarihi();
+
 
         return urun;
 

@@ -1,6 +1,6 @@
 package com.voghbum.FTTechBootcampCaseProject.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -25,14 +25,15 @@ public class Kullanici {
     @Column(name = "telephone", length = 15, nullable = false)
     public String telefon;
 
-    @OneToMany(mappedBy = "kullanici", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JsonManagedReference
+    @OneToMany(mappedBy = "kullanici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     public Set<UrunYorum> yorumlar;
 
     @Override
     public String toString() {
         return "Kullanici{" +
-                "adi='" + adi + '\'' +
+                "id=" + id +
+                ", adi='" + adi + '\'' +
                 ", soyadi='" + soyadi + '\'' +
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +

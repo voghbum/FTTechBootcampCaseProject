@@ -1,5 +1,6 @@
 package com.voghbum.FTTechBootcampCaseProject.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Set;
@@ -14,7 +15,7 @@ public class KullaniciInfoDTO {
 
     private Set<UrunYorumInfoDTO> m_urunYorumInfoDTO;
 
-
+    @JsonBackReference
     public Set<UrunYorumInfoDTO> getUrunYorumInfoDTO() {
         return m_urunYorumInfoDTO;
     }
