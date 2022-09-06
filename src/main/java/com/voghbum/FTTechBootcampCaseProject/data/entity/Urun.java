@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -37,5 +38,19 @@ public class Urun {
                 ", sonKullanmaTarihi=" + sonKullanmaTarihi +
                 ", yorumlar=" + yorumlar +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Urun urun = (Urun) o;
+        return id == urun.id && Objects.equals(adi, urun.adi) && Objects.equals(fiyat, urun.fiyat)
+                && Objects.equals(sonKullanmaTarihi, urun.sonKullanmaTarihi);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, adi, fiyat, sonKullanmaTarihi);
     }
 }

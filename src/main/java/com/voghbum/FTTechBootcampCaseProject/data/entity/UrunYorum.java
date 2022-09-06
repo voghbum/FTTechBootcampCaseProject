@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "comments")
@@ -38,6 +39,20 @@ public class UrunYorum {
                 ", urun=" + urun +
                 ", kullanici=" + kullanici +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UrunYorum urunYorum = (UrunYorum) o;
+        return id == urunYorum.id && Objects.equals(yorum, urunYorum.yorum)
+                && Objects.equals(yorumTarihi, urunYorum.yorumTarihi);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, yorum, yorumTarihi);
     }
 }
 

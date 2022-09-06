@@ -3,6 +3,7 @@ package com.voghbum.FTTechBootcampCaseProject.data.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,5 +39,19 @@ public class Kullanici {
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kullanici kullanici = (Kullanici) o;
+        return id == kullanici.id && Objects.equals(adi, kullanici.adi) && Objects.equals(soyadi, kullanici.soyadi)
+                && Objects.equals(email, kullanici.email) && Objects.equals(telefon, kullanici.telefon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, adi, soyadi, email, telefon);
     }
 }
